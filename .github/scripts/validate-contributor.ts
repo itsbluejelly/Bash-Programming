@@ -1,6 +1,11 @@
+/**
+ * A function to check whether a user is a contributor
+ * @param actor The user to inspect
+ * @returns A boolean to determine whether or not the user is included in the contributor list
+ */
 function isAuthorised(actor: string){
     // Step 1: Ensure contributors are in proper format
-    const contributors: string[] | undefined = process.env.CONTRIBUTORS?.split(",")
+    const contributors: string[] | undefined = process.env.CONTRIBUTORS?.replace(/\s/g, "").split(",")
     if(!contributors?.length) throw new Error("Contributors not found in the env variables")
 
     return contributors.includes(actor)
