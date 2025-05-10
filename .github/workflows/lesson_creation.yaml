@@ -5,8 +5,8 @@ on:
     push:
         branches:
             - "lesson_*"
-        # paths:
-        #     - "info.txt"
+        paths:
+            - "info.txt"
 
 permissions: 
   actions: write
