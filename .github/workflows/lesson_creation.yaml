@@ -8,9 +8,9 @@ on:
         paths:
             - "info.txt"
 
-permissions: 
-  actions: write
-  contents: write
+permissions:
+    actions: write
+    contents: write
 
 concurrency:
     cancel-in-progress: true
