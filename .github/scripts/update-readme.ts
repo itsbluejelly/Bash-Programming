@@ -133,7 +133,7 @@ function getInfoFileData(fileData: string[]) {
 	// Step 2: Populate the info data object
 	for (const entry of fileData) {
 		// Ensure the entry is in a valid format, and skip if the entry has no key, no value or isn't a valid title
-		const [key, value] = entry.replace(/\s/g, "").split(":") as [
+		const [key, value] = entry.split(":") as [
 			keyof typeof infoData,
 			string
 		]
@@ -141,7 +141,9 @@ function getInfoFileData(fileData: string[]) {
 		if (!key || !value || !VALID_TITLES.includes(key)) continue
 
 		// Add to the data only if it doesn't exist
-		if (!infoData[key]) infoData[key] = value
+		const validKey = key.trim() as keyof typeof infoData
+		const validValue = value.trim()
+		if (!infoData[validKey]) infoData[validKey] = validValue
 	}
 
 	if (!Object.keys(infoData).length) {

@@ -1,5 +1,7 @@
 # Bash Programming Tutorial
 
+[![Lesson Branch Creation](https://github.com/itsbluejelly/Bash-Programming/actions/workflows/lesson_creation.yaml/badge.svg)](https://github.com/itsbluejelly/Bash-Programming/actions/workflows/lesson_creation.yaml)
+
 This repository is an archive of my journey learning Bash programming. It contains various scripts and examples that I have created while learning the language.
 
 ## Table of Contents
@@ -37,7 +39,6 @@ The list below contains the topics covered in the tutorial series. Each topic is
 
 <!-- Please dont delete the comments surrounding the list of lessons🙏 -->
 <!-- Start of tutorial list -->
-- [Lesson 1: IntroductiontoBash](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_1)
 <!-- End of tutorial list -->
 
 ## Guidelines
