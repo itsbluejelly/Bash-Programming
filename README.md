@@ -6,7 +6,7 @@ This repository is an archive of my journey learning Bash programming. It contai
 
 To navigate the repo, please remember the following
 
-1. __Branches__: The branches aside from the `main` branch are used to store different parts of the tutorial. Each branch contains a specific stage in the process. For example, the `lesson_1` branch contains all scripts listed in the 1st lesson, etc.
+1. __Branches__: The branches aside from the `main` branch are used to store different parts of the tutorial. Each branch contains a specific stage in the process. For example, the `lesson_1` branch contains all scripts listed in the 1st lesson, etc.The branch names are in the format `lesson_<number>`, where `<number>` is the lesson number, in lower snake case.
 
 2. __File/Folder names__: The file or folder names are used to detail what topic was covered in the lesson, for example, `lesson_1` has a script named `start.sh` which details the pilot of the tutorial series.
 
@@ -14,7 +14,7 @@ Each branch consists of
 
 - __Readme__: A readme file that contains the details of the lesson and the scripts in the branch.
 - __Scripts__: The scripts that were created during the lesson. Each script is named according to the topic covered in the lesson. It can either be a standalone file or a folder, but the name should suffice the purpose
-- __info.txt__: A file that enables the bot running in the action to detect the topic of the lesson identified by the branch name.It should consist of a topic name and a description of the topic, in a key-value as format shown below, but can also contain other optional metadata:
+- __info.txt__: A file that enables the bot running in the action to detect the metadata of the lesson identified by the branch name.It should consist of a topic name in a key-value format as shown below, but can also contain other optional metadata and should be in the root of the branch:
 
 ```text
 topic: <topic name>

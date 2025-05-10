@@ -1,5 +1,11 @@
 {
-  "dependencies": {
-    "@types/node": "^22.15.17"
+  "name": "bash_tutorial",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }
