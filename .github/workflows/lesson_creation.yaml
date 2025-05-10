@@ -10,10 +10,7 @@ on:
 
 permissions: 
   actions: write
-
-permissions:
-    actions: write
-    contents: write
+  contents: write
 
 concurrency:
     cancel-in-progress: true

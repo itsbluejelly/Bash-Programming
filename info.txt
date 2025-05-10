@@ -1,1 +1,2 @@
 topic: Introduction to Bash
+description: This is a brief introduction to the Bash shell, its history, and its features.
