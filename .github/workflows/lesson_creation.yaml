@@ -55,7 +55,14 @@ jobs:
                 ref: main
 
             - name: Append info.txt file
-              run: echo ${{needs.get_branch_metadata.outputs.branch_metadata}} >> info.txt
+              run: |
+                # Create a temporary file with the content
+                cat << 'EOF' > temp_info.txt
+                ${{needs.get_branch_metadata.outputs.branch_metadata}}
+                EOF
+                
+                # Then append that file
+                cat temp_info.txt >> info.txt
 
             # # Not needed in production (only for local testing)
             # - name: Install unzip for bun
