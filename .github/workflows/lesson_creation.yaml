@@ -8,6 +8,9 @@ on:
         paths:
             - "info.txt"
 
+permissions: 
+  actions: write
+
 concurrency:
     cancel-in-progress: true
     group: ${{github.workflow}}-${{github.ref}}
