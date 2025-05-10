@@ -2,66 +2,76 @@ name: Lesson Branch Creation
 run-name: "${{github.actor}} created lesson ${{github.ref_name}}"
 
 on:
-  push: 
-    branches: 
-      - "lesson_*"
+    push:
+        branches:
+            - "lesson_*"
+        paths:
+            - "info.txt"
 
-concurrency: 
-  cancel-in-progress: true
-  group: ${{github.workflow}}-${{github.ref}}
+concurrency:
+    cancel-in-progress: true
+    group: ${{github.workflow}}-${{github.ref}}
 
 jobs:
-    verify_branch:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout repo
-          uses: actions/checkout@v4
+    get_branch_metadata:
+        runs-on: ubuntu-latest
 
-        - name: Checkout to lesson branch
-          run: git checkout ${{github.ref_name}}
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{github.ref}}
 
-    # create_lesson:
-    #     runs-on: ubuntu-latest
-    #     if: github.ref_type == 'branch' && startswith(github.ref_name, 'lesson_')
-        
-    #     steps:
-    #         - name: Checkout repo
-    #           uses: actions/checkout@v4
-    #           with:
-    #             fetch-depth: 0
-    #             ref: main
+            - name: Read info.txt file
+              id: read-file
+              run: echo "info_file=$(cat info.txt)" >> "$GITHUB_OUTPUT"
 
-    #         - name: Setup bun
-    #           uses: oven-sh/setup-bun@v2 
+        outputs:
+            branch_metadata: ${{steps.read-file.outputs.info_file}}
 
-    #         - name: Install deps
-    #           run: bun install
-            
-    #         - name: Validate contributor
-    #           id: validation
-    #           run: bun .github/scripts/validate-contributor.ts 
-    #           continue-on-error: false
-              
-    #           env:
-    #             actor: ${{github.actor}}
-    #             CONTRIBUTORS: ${{secrets.CONTRIBUTORS}}
+    add_lesson:
+        runs-on: ubuntu-latest
+        needs: get_branch_metadata
 
-    #         - name: Update readme
-    #           id: update-readme
-    #           continue-on-error: false
-    #           if: steps.validation.outcome == 'success'
-    #           run: bun .github/scripts/update-readme.ts
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
 
-    #           env:
-    #             BRANCH_NAME: ${{github.ref_name}}
+            - name: Append info.txt file
+              run: echo ${{needs.get_branch_metadata.outputs.branch_metadata}} >> info.txt
 
-    #         - name: Commit changes
-    #           if: steps.update-readme.outcome == 'success'
-    #           run: |
-    #             git config user.name 'github-actions[bot]'
-    #             git config user.email 'github-actions[bot]@users.noreply.github.com'
-    #             git add README.md
-    #             git commit -m "Successfully updated readme with lesson ${{github.ref_name}}"
-    #             git push origin main
+            # # Not needed in production (only for local testing)
+            # - name: Install unzip for bun
+            #   run: |
+            #       apt-get update -y
+            #       apt-get install -y unzip
 
-    
+            - name: Setup bun
+              uses: oven-sh/setup-bun@v2
+
+            - name: Validate contributor
+              id: validation
+              run: bun .github/scripts/validate-contributor.ts
+              continue-on-error: false
+
+              env:
+                  actor: ${{github.actor}}
+                  CONTRIBUTORS: ${{secrets.CONTRIBUTORS}}
+
+            - name: Update readme
+              id: update-readme
+              continue-on-error: false
+              if: steps.validation.outcome == 'success'
+              run: bun .github/scripts/update-readme.ts
+
+              env:
+                  BRANCH_NAME: ${{github.ref_name}}
+
+            - name: Commit changes
+              if: steps.update-readme.outcome == 'success'
+              run: |
+                  git config user.name 'github-actions[bot]'
+                  git config user.email 'github-actions[bot]@users.noreply.github.com'
+                  git add README.md
+                  git commit -m "Successfully updated readme with lesson ${{github.ref_name}}"
+                  git push origin main
