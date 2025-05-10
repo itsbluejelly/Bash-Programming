@@ -39,6 +39,8 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
+              with:
+                ref: main
 
             - name: Append info.txt file
               run: echo ${{needs.get_branch_metadata.outputs.branch_metadata}} >> info.txt
