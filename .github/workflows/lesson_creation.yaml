@@ -3,10 +3,10 @@ run-name: "${{github.actor}} created lesson ${{github.ref_name}}"
 
 on:
     push:
-        # branches:
-        #     - "lesson_*"
-        # paths:
-        #     - "info.txt"
+        branches:
+            - "lesson_*"
+        paths:
+            - "info.txt"
 
 permissions: 
   actions: write
