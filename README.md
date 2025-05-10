@@ -40,6 +40,7 @@ The list below contains the topics covered in the tutorial series. Each topic is
 <!-- Please dont delete the comments surrounding the list of lessons🙏 -->
 <!-- Start of tutorial list -->
 - [Lesson 1: Introduction to Bash](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_1)
+- [Lesson 2: Variables](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_2)
 <!-- End of tutorial list -->
 
 ## Guidelines
