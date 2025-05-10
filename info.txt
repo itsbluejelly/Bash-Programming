@@ -1,2 +1,1 @@
 topic: Introduction to Bash
-description: Pilot of the series
