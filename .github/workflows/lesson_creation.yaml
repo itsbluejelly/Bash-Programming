@@ -23,7 +23,7 @@ jobs:
             - name: Checkout repo
               uses: actions/checkout@v4
               with:
-                  ref: 
+                  ref: ${{github.ref}}
 
             - name: Read info.txt file
               id: read-file
