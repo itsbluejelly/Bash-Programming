@@ -8,9 +8,9 @@ on:
         paths:
             - "info.txt"
 
-permissions: 
-  actions: write
-  contents: write
+permissions:
+    actions: write
+    contents: write
 
 concurrency:
     cancel-in-progress: true
@@ -29,17 +29,8 @@ jobs:
             - name: Read info.txt file
               id: read-file
               run: |
-                # Define a unique delimiter
-                  EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-                  
-                  # Start the multiline output with the delimiter
-                  echo "info_file<<$EOF" >> "$GITHUB_OUTPUT"
-                  
-                  # Add file contents
-                  cat info.txt >> "$GITHUB_OUTPUT"
-                  
-                  # End with the delimiter
-                  echo "$EOF" >> "$GITHUB_OUTPUT"
+                CONTENT=$(cat info.txt | tr '\n' ';')
+                echo "info_file=$CONTENT" >> $GITHUB_OUTPUT
 
         outputs:
             branch_metadata: ${{steps.read-file.outputs.info_file}}
@@ -52,10 +43,10 @@ jobs:
             - name: Checkout repo
               uses: actions/checkout@v4
               with:
-                ref: main
+                  ref: main
 
             - name: Append info.txt file
-              run: echo ${{needs.get_branch_metadata.outputs.branch_metadata}} >> info.txt
+              run: echo '${{needs.get_branch_metadata.outputs.branch_metadata}}' | tr ';' '\n' >> info.txt
 
             # # Not needed in production (only for local testing)
             # - name: Install unzip for bun
@@ -67,7 +58,7 @@ jobs:
               uses: oven-sh/setup-bun@v2
 
             - name: Install packages
-              run: bun install  
+              run: bun install
 
             - name: Validate contributor
               id: validation
