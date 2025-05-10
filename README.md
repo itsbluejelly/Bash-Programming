@@ -2,6 +2,14 @@
 
 This repository is an archive of my journey learning Bash programming. It contains various scripts and examples that I have created while learning the language.
 
+## Table of Contents
+
+- [Bash Programming Tutorial](#bash-programming-tutorial)
+  - [Branch Structure](#branch-structure)
+  - [Tutorial Series](#tutorial-series)
+  - [Guidelines](#guidelines)
+  - [Credit](#credits)
+
 ## Branch Structure
 
 To navigate the repo, please remember the following
@@ -20,15 +28,6 @@ Each branch consists of
 topic: <topic name>
 description: <description>
 ```
-
-## Table of Contents
-
-- [Bash Programming Tutorial](#bash-programming-tutorial)
-  - [Table of Contents](#table-of-contents)
-  - [Branch Structure](#branch-structure)
-  - [Tutorial Series](#tutorial-series)
-  - [Guidelines](#guidelines)
-  - [Credit](#credits)
 
 ## Tutorial Series
 

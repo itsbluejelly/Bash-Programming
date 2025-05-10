@@ -1,0 +1,67 @@
+name: Lesson Branch Creation
+run-name: "${{github.actor}} created lesson ${{github.ref_name}}"
+
+on:
+  push: 
+    branches: 
+      - "lesson_*"
+
+concurrency: 
+  cancel-in-progress: true
+  group: ${{github.workflow}}-${{github.ref}}
+
+jobs:
+    verify_branch:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v4
+
+        - name: Checkout to lesson branch
+          run: git checkout ${{github.ref_name}}
+
+    # create_lesson:
+    #     runs-on: ubuntu-latest
+    #     if: github.ref_type == 'branch' && startswith(github.ref_name, 'lesson_')
+        
+    #     steps:
+    #         - name: Checkout repo
+    #           uses: actions/checkout@v4
+    #           with:
+    #             fetch-depth: 0
+    #             ref: main
+
+    #         - name: Setup bun
+    #           uses: oven-sh/setup-bun@v2 
+
+    #         - name: Install deps
+    #           run: bun install
+            
+    #         - name: Validate contributor
+    #           id: validation
+    #           run: bun .github/scripts/validate-contributor.ts 
+    #           continue-on-error: false
+              
+    #           env:
+    #             actor: ${{github.actor}}
+    #             CONTRIBUTORS: ${{secrets.CONTRIBUTORS}}
+
+    #         - name: Update readme
+    #           id: update-readme
+    #           continue-on-error: false
+    #           if: steps.validation.outcome == 'success'
+    #           run: bun .github/scripts/update-readme.ts
+
+    #           env:
+    #             BRANCH_NAME: ${{github.ref_name}}
+
+    #         - name: Commit changes
+    #           if: steps.update-readme.outcome == 'success'
+    #           run: |
+    #             git config user.name 'github-actions[bot]'
+    #             git config user.email 'github-actions[bot]@users.noreply.github.com'
+    #             git add README.md
+    #             git commit -m "Successfully updated readme with lesson ${{github.ref_name}}"
+    #             git push origin main
+
+    
