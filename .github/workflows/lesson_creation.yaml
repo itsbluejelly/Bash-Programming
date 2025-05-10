@@ -10,6 +10,7 @@ on:
 
 permissions: 
   actions: write
+  contents: write
 
 concurrency:
     cancel-in-progress: true
@@ -27,7 +28,18 @@ jobs:
 
             - name: Read info.txt file
               id: read-file
-              run: echo "info_file=$(cat info.txt)" >> "$GITHUB_OUTPUT"
+              run: |
+                # Define a unique delimiter
+                  EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+                  
+                  # Start the multiline output with the delimiter
+                  echo "info_file<<$EOF" >> "$GITHUB_OUTPUT"
+                  
+                  # Add file contents
+                  cat info.txt >> "$GITHUB_OUTPUT"
+                  
+                  # End with the delimiter
+                  echo "$EOF" >> "$GITHUB_OUTPUT"
 
         outputs:
             branch_metadata: ${{steps.read-file.outputs.info_file}}
