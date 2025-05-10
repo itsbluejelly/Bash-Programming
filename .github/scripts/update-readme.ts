@@ -84,19 +84,9 @@ async function appendTutorial(
 		const firstTutorialLesson = firstMatch?.[1] ?? firstMatch?.[2]
 		const secondTutorialLesson = secondMatch?.[1] ?? secondMatch?.[2]
 
-		if (!firstTutorialLesson) {
-			throw new Error(
-				`Tutorial ${firstTutorial} has no valid tutorial identifier`
-			)
-		} else if (!secondTutorialLesson) {
-			throw new Error(
-				`Tutorial ${firstTutorial} has no valid tutorial identifier`
-			)
-		}
-
 		// Convert the lessons to numbers
-		const firstTutorialLessonNo = parseInt(firstTutorialLesson)
-		const secondTutorialLessonNo = parseInt(secondTutorialLesson)
+		const firstTutorialLessonNo = parseInt(firstTutorialLesson ?? "")
+		const secondTutorialLessonNo = parseInt(secondTutorialLesson ?? "")
 
 		// Sort based on order
 		return order === "asc"
