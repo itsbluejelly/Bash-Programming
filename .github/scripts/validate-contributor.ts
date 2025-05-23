@@ -13,7 +13,7 @@ function isAuthorised(actor: string){
 
 function main(){
     // Step 1: Check if a user exists
-    const actor = process.env.actor
+    const actor = process.env.ACTOR
     if(!actor) throw new Error("Actor not defined in the env variables")
 
     // Step 2: Confirm user is a valid contributor

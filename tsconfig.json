@@ -26,6 +26,6 @@
     "noPropertyAccessFromIndexSignature": false
   },
 
-  "include": ["./.github/scripts/*.ts"],
+  "include": [".github/scripts/*.ts", "types"],
   "exclude": ["node_modules"],
 }

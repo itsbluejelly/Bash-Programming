@@ -10,7 +10,7 @@ const TUTORIAL_MARKERS = {
 }
 
 /** A list of all valid titles that should be parsed from `info.txt` file */
-const VALID_TITLES = ["topic"] as const
+const VALID_TITLES = ["topic", ] as const
 
 /**
  * A function to get the platform-independent path to a specific file
