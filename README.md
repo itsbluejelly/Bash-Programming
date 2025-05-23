@@ -22,11 +22,11 @@ To navigate the repo, please remember the following
 
 Each branch consists of
 
-- __.github/workflows__: The folder that contains the Github Actions described in the main branch.This should be the same as the main branch and must be present.
+- The scripts in a file or folder named after the topic covered in the lesson. For example, the `lesson_1` branch has a script named `start.sh` which details the pilot of the tutorial series.
+- __.github__: The folder that contains the Github Actions and the associated scripts described in the main branch.This should be the same as the main branch and must be present.
 - __.vscode__: The folder that contains the settings for the Visual Studio Code editor. It also enables intellisense for the `branch-info.json` file. It is not mandatory to have this folder in your branch, but it is recommended to have it with properties from the main branch for better development experience.
 - __schemas__: The folder that contains the JSON schema for the `branch-info.json` file. It is not mandatory to have this folder in your branch, but it is recommended to have it for better development experience.
-- __Scripts__: The scripts that were created during the lesson. Each script is named according to the topic covered in the lesson. It can either be a standalone file or a folder, but the name should suffice the purpose
-- __branch-info.json__: A file that enables the bot running in the action to detect the metadata of the lesson identified by the branch name. It should be in the root of the branch and is type safe. It consists of the following fields:
+- __branch-info.json__: A file that enables the bot running in the action to detect the metadata of the lesson identified by the branch name. It should be in the root of the branch and is intellisense-enabled on vscode. It consists of the following fields:
 
 ```json
 {
@@ -36,6 +36,8 @@ Each branch consists of
   "author": "<author name>", // The optional author of the lesson. By default its the name of the user who created the branch
 }
 ```
+
+> To ensure the branch has all the required files, please branch off the `demo_lesson` branch and name the new branch in the format specified above. The `demo_lesson` has all the required files and folders, with a dummy `branch-info.json` file, and is meant to be used as a template and not an example of a lesson.
 
 ## Tutorial Series
 

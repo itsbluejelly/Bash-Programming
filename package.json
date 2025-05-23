@@ -2,10 +2,17 @@
   "name": "bash_tutorial",
   "type": "module",
   "private": true,
+  "scripts": {
+    "test": "vitest"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "vitest": "^3.1.4"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }

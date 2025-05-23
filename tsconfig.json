@@ -23,9 +23,20 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+
+    // Path configs
+    "paths": {
+      "~/*": ["./*"]
+    },
   },
 
-  "include": [".github/scripts/*.ts", "types"],
+  "include": [
+    ".github/scripts/*.ts", 
+    "types", 
+    "tests/**/*.ts", 
+    "vitest.config.ts"
+  ],
+  
   "exclude": ["node_modules"],
 }
