@@ -1,5 +1,7 @@
+import Ajv, { type JSONSchemaType } from "ajv"
 import fsPromises from "node:fs/promises"
 import path from "node:path"
+import type { BranchInfoType } from "~/schemas/branch-info/type"
 
 /** An object that contains the section markers for the tutorials in the readme file */
 const TUTORIAL_MARKERS = {
@@ -7,13 +9,22 @@ const TUTORIAL_MARKERS = {
 	START: "<!-- Start of tutorial list -->" as const,
 	/** The marker that identifies the end of this section */
 	END: "<!-- End of tutorial list -->" as const,
+	/** The marker that separates each lesson */
+	MIDDLE: "<!-- Lesson here -->" as const,
 }
 
-/** A list of all valid titles that should be parsed from `info.txt` file */
-const VALID_TITLES = ["topic", ] as const
+/** An object that contains important file names */
+const FILE_NAMES = {
+	/** The name to the branch info metadata file */
+	BRANCH_INFO: "branch-info.json" as const,
+	/** The name to the readme file */
+	README: "README.md" as const,
+	/** The name of the schema file */
+	SCHEMA_FILE: ".schema.json" as const,
+}
 
 /**
- * A function to get the platform-independent path to a specific file
+ * A function to get the platform-independent path to a specific file, from the root
  * @returns The path to the file
  */
 const getFilePath = (fileName: string) =>
@@ -27,6 +38,12 @@ const getFilePath = (fileName: string) =>
 function getTutorialMarkerIndices(fileData: string[]) {
 	const tutorialStart = fileData.indexOf(TUTORIAL_MARKERS.START)
 	const tutorialEnd = fileData.indexOf(TUTORIAL_MARKERS.END)
+
+	if (tutorialStart === -1) {
+		throw new Error(`Missing start marker ${TUTORIAL_MARKERS.START}`)
+	} else if (tutorialEnd === -1) {
+		throw new Error(`Missing end marker ${TUTORIAL_MARKERS.END}`)
+	}
 
 	return {
 		/** The index of where the start tutorial marker is in the array of data */
@@ -42,7 +59,7 @@ function getTutorialMarkerIndices(fileData: string[]) {
  */
 async function readTutorialList() {
 	// Step 1: Get the markdown file and the marker indices
-	const markdownFilePath = getFilePath("README.md")
+	const markdownFilePath = getFilePath(FILE_NAMES.README)
 
 	const markdownFile = await fsPromises.readFile(markdownFilePath, {
 		encoding: "utf-8",
@@ -53,9 +70,15 @@ async function readTutorialList() {
 	const { tutorialEnd, tutorialStart } =
 		getTutorialMarkerIndices(markdownFileData)
 
-	// Step 2: Get the list of tutorials(take note of the marker)
+	// Step 2: Get the list of tutorials(take note of the start marker and separate via the middle marker)
 	const startIndex = tutorialStart + 1
-	const tutorials = markdownFileData.slice(startIndex, tutorialEnd)
+
+	const tutorials = markdownFileData
+		.slice(startIndex, tutorialEnd)
+		.join("\n")
+		.split(`${TUTORIAL_MARKERS.MIDDLE}\n`)
+		.filter((arg) => arg.length > 0)
+		.map(arg => arg.split(`\n${TUTORIAL_MARKERS.MIDDLE}`)[0]?.trim()!)
 
 	return tutorials
 }
@@ -66,23 +89,27 @@ async function readTutorialList() {
  * @param currentTutorials The list of the previous tutorials to append to
  * @param order The order to write the new tutorials after appending, can be `asc` or `desc` and defaults to `asc`
  */
-async function appendTutorial(
+async function addTutorial(
 	tutorial: string,
 	currentTutorials: string[],
 	order: "asc" | "desc" = "asc"
 ) {
 	// Step 1: Add to the current tutorials and sort in the specified order
-	currentTutorials.push(tutorial.trim())
+	currentTutorials.push(tutorial)
+	
+	currentTutorials = currentTutorials.map((tutorial) =>
+		`${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim()
+	)
 
 	currentTutorials.sort((firstTutorial, secondTutorial) => {
 		// Get the matches
-		const regex = /Lesson (\d+)|lesson_(\d+)/
+		const regex = /Lesson (\d+)/
 		const firstMatch = firstTutorial.match(regex)
 		const secondMatch = secondTutorial.match(regex)
 
 		// Get the lesson numbers
-		const firstTutorialLesson = firstMatch?.[1] ?? firstMatch?.[2]
-		const secondTutorialLesson = secondMatch?.[1] ?? secondMatch?.[2]
+		const firstTutorialLesson = firstMatch?.[1]
+		const secondTutorialLesson = secondMatch?.[1]
 
 		// Convert the lessons to numbers
 		const firstTutorialLessonNo = parseInt(firstTutorialLesson ?? "")
@@ -95,7 +122,7 @@ async function appendTutorial(
 	})
 
 	// Step 2: Get the file path and the tutorial indices
-	const markdownFilePath = getFilePath("README.md")
+	const markdownFilePath = getFilePath(FILE_NAMES.README)
 
 	const markdownFile = await fsPromises.readFile(markdownFilePath, {
 		encoding: "utf-8",
@@ -107,64 +134,124 @@ async function appendTutorial(
 		getTutorialMarkerIndices(markdownFileData)
 
 	// Step 3: Write to the markdown section(Take note of the index start)
-	const fileContents = markdownFile.split("\n")
 	const startIndex = tutorialStart + 1
 
-	fileContents.splice(
+	markdownFileData.splice(
 		startIndex,
 		tutorialEnd - startIndex,
 		...currentTutorials
 	)
 
-	await fsPromises.writeFile(markdownFilePath, fileContents.join("\n"), {
+	await fsPromises.writeFile(markdownFilePath, markdownFileData.join("\n"), {
 		encoding: "utf-8",
 	})
 }
 
 /**
- * A function that parses the info.txt file and returns valid data in key-value format, and throws an error if the content isn't in the required format
- * @param fileData The data present in the file, in an array format
- * @returns An object with the valid data
+ * A function that edits an existing tutorial in place, and writes the changes to the markdown file
+ * @param tutorial The tutorial to edit
+ * @param currentTutorials THe current tutorials present in the markdown
  */
-function getInfoFileData(fileData: string[]) {
-	// Step 1: Declare the info data object
-	const infoData: Partial<Record<(typeof VALID_TITLES)[number], string>> = {}
+async function editTutorial(tutorial: string, currentTutorials: string[]) {
+	// Step 1: Find the tutorial in the current ones
+	const correctTutorial = `${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim()
+	
+	currentTutorials = currentTutorials.map((tutorial) =>
+		`${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim()
+	)
 
-	// Step 2: Populate the info data object
-	for (const entry of fileData) {
-		// Ensure the entry is in a valid format, and skip if the entry has no key, no value or isn't a valid title
-		const [key, value] = entry.split(":") as [
-			keyof typeof infoData,
-			string
-		]
+	const editIndex = currentTutorials.findIndex((currentTutorial) => {
+		// Get the title
+		const regex = /Lesson \d+/
+		const editedTitle = correctTutorial.match(regex)?.[0]
+		const currentTitle = currentTutorial.match(regex)?.[0]
 
-		if (!key || !value || !VALID_TITLES.includes(key)) continue
+		return currentTitle && currentTitle === editedTitle
+	})
 
-		// Add to the data only if it doesn't exist
-		const validKey = key.trim() as keyof typeof infoData
-		const validValue = value.trim()
-		if (!infoData[validKey]) infoData[validKey] = validValue
+	if (editIndex === -1) {
+		throw new Error("This tutorial doesn't exist yet")
 	}
 
-	if (!Object.keys(infoData).length) {
-		throw new Error("The info file doesn't have the required metadata")
-	}
+	// Step 2: Replace it in the list
+	currentTutorials.splice(editIndex, 1, correctTutorial)
 
-	return infoData
-}
+	// Step 3: Get the markdown file and tutorial indices
+	const filePath = getFilePath(FILE_NAMES.README)
 
-async function main() {
-	// Step 1: Read the info file
-	const infoFilePath = getFilePath("info.txt")
-
-	const infoFile = await fsPromises.readFile(infoFilePath, {
+	const markdownFile = await fsPromises.readFile(filePath, {
 		encoding: "utf-8",
 	})
 
-	const infoFileData = infoFile.split("\n")
+	const markdownFileData = markdownFile.split("\n")
 
-	// Step 2: Get the valid info data and branch name
-	const infoData = getInfoFileData(infoFileData)
+	const { tutorialEnd, tutorialStart } =
+		getTutorialMarkerIndices(markdownFileData)
+
+	// Step 4: Write the new list to the markdown
+	const startIndex = tutorialStart + 1
+
+	markdownFileData.splice(
+		startIndex,
+		tutorialEnd - startIndex,
+		...currentTutorials
+	)
+
+	await fsPromises.writeFile(filePath, markdownFileData.join("\n"), {
+		encoding: "utf-8",
+	})
+}
+
+/**
+ * A function that parses the branch-info.json file and returns valid data in key-value format, and throws an error if the content isn't in the required format
+ * @param fileData The data present in the file, in JSON format
+ * @returns An object with the valid data
+ */
+async function getBranchInfo(fileData: string) {
+	// Step 1: Prepare the parser
+	const ajv = new Ajv()
+	const filePath = getFilePath(
+		path.join("schemas", "branch-info", FILE_NAMES.SCHEMA_FILE)
+	)
+
+	const schema = JSON.parse(
+		await fsPromises.readFile(filePath, { encoding: "utf-8" })
+	) as JSONSchemaType<BranchInfoType>
+
+	const parse = ajv.compile(schema)
+
+	// Step 2: Parse the file data
+	const parsedData = JSON.parse(fileData)
+	if (!parse(parsedData)) throw new Error(parse.errors?.join("\n,"))
+
+	// Step 3: Prepare defaults if data is okay
+	const updateDate = process.env.LAST_UPDATED_AT
+		? new Date(process.env.LAST_UPDATED_AT)
+		: new Date()
+
+	const branchInfoData: BranchInfoType = {
+		author: process.env.ACTOR,
+
+		lastUpdated: updateDate
+			.toISOString()
+			.split("T")[0] as BranchInfoType["lastUpdated"],
+
+		...parsedData,
+	}
+
+	return branchInfoData
+}
+
+async function main() {
+	// Step 1: Read the branch-info file
+	const infoFilePath = getFilePath(FILE_NAMES.BRANCH_INFO)
+
+	const infoFileData = await fsPromises.readFile(infoFilePath, {
+		encoding: "utf-8",
+	})
+
+	// Step 2: Get the valid branch info data and branch name
+	const infoData = await getBranchInfo(infoFileData)
 	const branchName = process.env.BRANCH_NAME
 
 	if (!branchName) {
@@ -173,7 +260,7 @@ async function main() {
 
 	const regex = /^lesson_\d+$/
 
-	if(!regex.test(branchName)){
+	if (!regex.test(branchName)) {
 		throw new Error("The branch name is not in the required format")
 	}
 
@@ -183,16 +270,33 @@ async function main() {
 
 	// Step 3: Form the markdown entry title
 	const title = `${properBranchName}: ${infoData.topic}`
-	const entry = `- [${title}](https://github.com/itsbluejelly/Bash-Programming/tree/${branchName})`
 
-	// Step 4: Edit the markdown only if the
+	const entry = `- [__${title}__](https://github.com/itsbluejelly/Bash-Programming/tree/${branchName})${
+		infoData.description ? `\n${infoData.description}` : ""
+	}${
+		infoData.author
+			? `\n  - Covered by: [${infoData.author}](https://github.com/${infoData.author})`
+			: ""
+	}\n  - Last updated: _${infoData.lastUpdated}_`
+
+	// Step 4: Edit or add the entry to the markdown
 	const oldTutorials = await readTutorialList()
 
-	if (!oldTutorials.some((tutorial) => tutorial.includes(title))) {
-		await appendTutorial(entry, oldTutorials)
+	if (
+		oldTutorials.some((tutorial) =>
+			tutorial.includes(properBranchName ?? title)
+		)
+	) {
+		console.log({entry, oldTutorials})
+		await editTutorial(entry, oldTutorials)
 	} else {
-		throw new Error(`Tutorial ${title} already exists`)
+		console.log({ entry, oldTutorials })
+		await addTutorial(entry, oldTutorials)
 	}
+
+	console.log(await readTutorialList())
 }
 
-main()
+if (require.main === module) {
+	main()
+}

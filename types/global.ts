@@ -4,6 +4,8 @@ export type WorkflowEnvType = Partial<{
     CONTRIBUTORS: string
     /** The user who triggered the workflow */
     ACTOR: string
+    /** The period at which the event was triggered */
+    LAST_UPDATED_AT: string
 }>
 
 /** A type for the env supported in the repo */

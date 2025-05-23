@@ -2,7 +2,7 @@
     "json.schemas": [
         {
             "fileMatch": ["/branch-info.json"],
-            "url": "/schemas/branch-info.schema.json"
+            "url": "/schemas/branch-info/.schema.json"
         }
     ],
 }

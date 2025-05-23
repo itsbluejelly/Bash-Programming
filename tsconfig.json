@@ -35,7 +35,8 @@
     ".github/scripts/*.ts", 
     "types", 
     "tests/**/*.ts", 
-    "vitest.config.ts"
+    "vitest.config.ts",
+    "schemas/**/*.ts"
   ],
   
   "exclude": ["node_modules"],

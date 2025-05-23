@@ -8,7 +8,8 @@
             "type": "string",
             "minLength": 5,
             "description": "The topic of the lesson",
-            "examples": ["Intro to bash"]
+            "examples": ["Intro to bash"],
+            "pattern": "^[A-Z]."
         },
 
         "description": {
@@ -20,15 +21,14 @@
 
         "lastUpdated": {
             "type": "string",
-            "format": "YYYY-MM-DD",
-            "description": "The optional date at which the branch was last edited. By default, the period when the changes in the `branch-info.txt` file were pushed is used",
+            "description": "The optional date at which the branch was last edited. By default, the period when the changes in the `branch-info.json` file were pushed is used",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
             "examples": ["YYYY-MM-DD"]
         },
 
         "author": {
             "type": "string",
-            "description": "The optional username of the person who created the lesson. By default, its the person who created the branch",
+            "description": "The optional author of the lesson's github username. By default, its the person who made the recent changes to this file `branch-info.json`",
             "minLength": 1,
             "examples": ["itsbluejelly"]
         }

@@ -29,8 +29,8 @@ jobs:
             - name: Read info.txt file
               id: read-file
               run: |
-                CONTENT=$(cat info.txt | tr '\n' ';')
-                echo "info_file=$CONTENT" >> $GITHUB_OUTPUT
+                  CONTENT=$(cat info.txt | tr '\n' ';')
+                  echo "info_file=$CONTENT" >> $GITHUB_OUTPUT
 
         outputs:
             branch_metadata: ${{steps.read-file.outputs.info_file}}
@@ -38,6 +38,9 @@ jobs:
     add_lesson:
         runs-on: ubuntu-latest
         needs: get_branch_metadata
+
+        env:
+            ACTOR: ${{github.actor}}
 
         steps:
             - name: Checkout repo
@@ -66,8 +69,8 @@ jobs:
               continue-on-error: false
 
               env:
-                  ACTOR: ${{github.actor}}
                   CONTRIBUTORS: ${{secrets.CONTRIBUTORS}}
+                  LAST_UPDATED_AT: ${{github.event.pusher.date}}
 
             - name: Update readme
               id: update-readme

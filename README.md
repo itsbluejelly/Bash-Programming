@@ -33,7 +33,7 @@ Each branch consists of
   "topic": "<topic name>", // The mandatory topic of the lesson
   "description": "<description>", // The optional description of the lesson
   "lastUpdated": "<date in YYYY-MM-DD format>", // The optional date when the lesson was last updated. By default its when the file was last edited in the remote branch,
-  "author": "<author name>", // The optional author of the lesson. By default its the name of the user who created the branch
+  "author": "<author name>", // The optional author of the lesson's github username. By default its the name of the user who triggered the lesson workflow
 }
 ```
 
@@ -45,7 +45,7 @@ The list below contains the topics covered in the tutorial series. Each topic is
 
 > They are automatically updated as the series progresses 😂
 
-<!-- Please dont delete the comments surrounding the list of lessons🙏 -->
+<!-- Please dont delete the comments surrounding and within list of lessons🙏 -->
 <!-- Start of tutorial list -->
 <!-- End of tutorial list -->
 
