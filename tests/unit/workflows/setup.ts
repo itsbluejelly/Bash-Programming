@@ -13,6 +13,8 @@ beforeAll(() => {
 		...originalEnv,
 		ACTOR: "itsbluejelly",
 		CONTRIBUTORS: "itsbluejelly, personA",
+		BRANCH_NAME: "lesson_0",
+		LAST_UPDATED_AT: new Date().toISOString()
 	})
 })
 

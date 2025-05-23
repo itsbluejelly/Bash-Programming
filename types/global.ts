@@ -6,6 +6,8 @@ export type WorkflowEnvType = Partial<{
     ACTOR: string
     /** The period at which the event was triggered */
     LAST_UPDATED_AT: string
+    /** The name of the branch currently processing the workflow */
+    BRANCH_NAME: string
 }>
 
 /** A type for the env supported in the repo */

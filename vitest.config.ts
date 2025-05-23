@@ -8,5 +8,6 @@ export default defineConfig({
         include: ["tests/**/*.test.ts"],
         setupFiles: ["tests/unit/workflows/setup.ts"],
         watch: true,
+        globalSetup: "tests/unit/global-setup.ts"
     }
 })

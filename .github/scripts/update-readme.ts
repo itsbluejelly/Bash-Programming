@@ -27,7 +27,7 @@ const FILE_NAMES = {
  * A function to get the platform-independent path to a specific file, from the root
  * @returns The path to the file
  */
-const getFilePath = (fileName: string) =>
+export const getFilePath = (fileName: string) =>
 	path.join(__dirname, "..", "..", fileName)
 
 /**

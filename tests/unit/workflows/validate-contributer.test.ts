@@ -1,8 +1,8 @@
-import {test, expect, describe, afterEach} from "vitest"
+import {test, expect, describe } from "vitest"
 import { isAuthorised } from "~/.github/scripts/validate-contributor"
 import { mockProcessEnv, originalEnv } from "./setup"
 
-describe("Validate Contributors", () => {
+describe("isAuthorised function", () => {
     test("It should throw an error if no contributors are found", () => {
         mockProcessEnv.mockImplementationOnce(() => ({
             ...originalEnv,
