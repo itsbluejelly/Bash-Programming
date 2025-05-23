@@ -22,13 +22,19 @@ To navigate the repo, please remember the following
 
 Each branch consists of
 
-- __Readme__: A readme file that contains the details of the lesson and the scripts in the branch.
+- __.github/workflows__: The folder that contains the Github Actions described in the main branch.This should be the same as the main branch and must be present.
+- __.vscode__: The folder that contains the settings for the Visual Studio Code editor. It also enables intellisense for the `branch-info.json` file. It is not mandatory to have this folder in your branch, but it is recommended to have it with properties from the main branch for better development experience.
+- __schemas__: The folder that contains the JSON schema for the `branch-info.json` file. It is not mandatory to have this folder in your branch, but it is recommended to have it for better development experience.
 - __Scripts__: The scripts that were created during the lesson. Each script is named according to the topic covered in the lesson. It can either be a standalone file or a folder, but the name should suffice the purpose
-- __info.txt__: A file that enables the bot running in the action to detect the metadata of the lesson identified by the branch name. It should consist of a topic name in a key-value format as shown below, but can also contain other optional metadata and should be in the root of the branch:
+- __branch-info.json__: A file that enables the bot running in the action to detect the metadata of the lesson identified by the branch name. It should be in the root of the branch and is type safe. It consists of the following fields:
 
-```text
-topic: <topic name>
-description: <description>
+```json
+{
+  "topic": "<topic name>", // The mandatory topic of the lesson
+  "description": "<description>", // The optional description of the lesson
+  "lastUpdated": "<date in YYYY-MM-DD format>", // The optional date when the lesson was last updated. By default its when the file was last edited in the remote branch,
+  "author": "<author name>", // The optional author of the lesson. By default its the name of the user who created the branch
+}
 ```
 
 ## Tutorial Series
