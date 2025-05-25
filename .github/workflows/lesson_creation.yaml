@@ -70,7 +70,7 @@ jobs:
 
               env:
                   CONTRIBUTORS: ${{secrets.CONTRIBUTORS}}
-                  LAST_UPDATED_AT: ${{github.event.pusher.date}}
+                  LAST_UPDATED_AT: ${{github.event.head_commit.timestamp}}
 
             - name: Update readme
               id: update-readme

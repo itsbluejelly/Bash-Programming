@@ -74,11 +74,11 @@ async function readTutorialList() {
 	const startIndex = tutorialStart + 1
 
 	const tutorials = markdownFileData
-		.slice(startIndex, tutorialEnd)
-		.join("\n")
-		.split(`${TUTORIAL_MARKERS.MIDDLE}\n`)
-		.filter((arg) => arg.length > 0)
-		.map(arg => arg.split(`\n${TUTORIAL_MARKERS.MIDDLE}`)[0]?.trim()!)
+		.slice(startIndex, tutorialEnd) // Get only the listed tutorial section with their markers
+		.join("\n") // Join via newlines
+		.split(`${TUTORIAL_MARKERS.MIDDLE}\n`) // Split via the line with the middle marker, to get the sections
+		.filter((arg) => arg.length > 0) // Remove empty strings
+		.map((arg) => arg.split(`\n${TUTORIAL_MARKERS.MIDDLE}`)[0]?.trim()!) // Remove the ending middle marker + newlines
 
 	return tutorials
 }
@@ -96,9 +96,9 @@ async function addTutorial(
 ) {
 	// Step 1: Add to the current tutorials and sort in the specified order
 	currentTutorials.push(tutorial)
-	
-	currentTutorials = currentTutorials.map((tutorial) =>
-		`${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim()
+
+	currentTutorials = currentTutorials.map(
+		(tutorial) => `${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim() // Add ending marker to all tutorials
 	)
 
 	currentTutorials.sort((firstTutorial, secondTutorial) => {
@@ -153,9 +153,9 @@ async function addTutorial(
  * @param currentTutorials THe current tutorials present in the markdown
  */
 async function editTutorial(tutorial: string, currentTutorials: string[]) {
-	// Step 1: Find the tutorial in the current ones
+	// Step 1: Find the tutorial in the current ones and add ending marker to all tutorials
 	const correctTutorial = `${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim()
-	
+
 	currentTutorials = currentTutorials.map((tutorial) =>
 		`${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim()
 	)
@@ -210,6 +210,7 @@ async function editTutorial(tutorial: string, currentTutorials: string[]) {
 async function getBranchInfo(fileData: string) {
 	// Step 1: Prepare the parser
 	const ajv = new Ajv()
+
 	const filePath = getFilePath(
 		path.join("schemas", "branch-info", FILE_NAMES.SCHEMA_FILE)
 	)
@@ -225,18 +226,13 @@ async function getBranchInfo(fileData: string) {
 	if (!parse(parsedData)) throw new Error(parse.errors?.join("\n,"))
 
 	// Step 3: Prepare defaults if data is okay
-	const updateDate = process.env.LAST_UPDATED_AT
-		? new Date(process.env.LAST_UPDATED_AT)
-		: new Date()
+	const givenDate = parsedData.lastUpdated ?? process.env.LAST_UPDATED_AT
+	const updateDate = givenDate ? new Date(givenDate) : new Date()
 
 	const branchInfoData: BranchInfoType = {
 		author: process.env.ACTOR,
-
-		lastUpdated: updateDate
-			.toISOString()
-			.split("T")[0] as BranchInfoType["lastUpdated"],
-
 		...parsedData,
+		lastUpdated: updateDate.toUTCString()
 	}
 
 	return branchInfoData
@@ -287,7 +283,7 @@ async function main() {
 			tutorial.includes(properBranchName ?? title)
 		)
 	) {
-		console.log({entry, oldTutorials})
+		console.log({ entry, oldTutorials })
 		await editTutorial(entry, oldTutorials)
 	} else {
 		console.log({ entry, oldTutorials })

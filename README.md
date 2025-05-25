@@ -32,7 +32,7 @@ Each branch consists of
 {
   "topic": "<topic name>", // The mandatory topic of the lesson
   "description": "<description>", // The optional description of the lesson
-  "lastUpdated": "<date in YYYY-MM-DD format>", // The optional date when the lesson was last updated. By default its when the file was last edited in the remote branch,
+  "lastUpdated": "<date in YYYY-MM-DD format>", // The optional date when the lesson was last updated. By default its when the file was last edited in the remote branch. It should be in RFC 7231 format,
   "author": "<author name>", // The optional author of the lesson's github username. By default its the name of the user who triggered the lesson workflow
 }
 ```

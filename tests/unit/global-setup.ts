@@ -73,11 +73,16 @@ export default async function setupUnitTests() {
             console.log("...Restoring real branch info file⏳")
 			await fsPromises.rename(newBranchInfoFilePath, branchInfoFilePath)
             console.log("Real branch info file secured✅")
-        }
-		if (newMarkdownExists){
-            console.log("Securing real readme file⏳")
+        }else{
+			console.log("There was no real branch info file to begin with😵")
+		}
+
+		if (newMarkdownExists) {
+			console.log("Securing real readme file⏳")
 			await fsPromises.rename(newMarkdownFilePath, markdownFilePath)
-            console.log("Readme file secured✅")
-        }
+			console.log("Readme file secured✅")
+		} else {
+			console.log("There was no real readme file to begin with😵")
+		}
 	}
 }

@@ -4,7 +4,7 @@ export type WorkflowEnvType = Partial<{
     CONTRIBUTORS: string
     /** The user who triggered the workflow */
     ACTOR: string
-    /** The period at which the event was triggered */
+    /** The period at which the event was triggered, in ISO-8601 format */
     LAST_UPDATED_AT: string
     /** The name of the branch currently processing the workflow */
     BRANCH_NAME: string
