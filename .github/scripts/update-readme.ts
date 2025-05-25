@@ -1,7 +1,7 @@
 import Ajv, { type JSONSchemaType } from "ajv"
 import fsPromises from "node:fs/promises"
 import path from "node:path"
-import type { BranchInfoType } from "~/schemas/branch-info/type"
+import type { BranchInfoType } from "../../schemas/branch-info/type"
 
 /** An object that contains the section markers for the tutorials in the readme file */
 export const TUTORIAL_MARKERS = {
