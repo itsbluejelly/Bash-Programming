@@ -9,7 +9,6 @@ on:
             - "info.txt"
 
 permissions:
-    actions: write
     contents: write
 
 concurrency:
@@ -17,8 +16,12 @@ concurrency:
     group: ${{github.workflow}}-${{github.ref}}
 
 jobs:
+    test-workflow:
+      uses: ./.github/workflows/test_lesson_update.yaml
+
     get_branch_metadata:
         runs-on: ubuntu-latest
+        needs: test-workflow
 
         steps:
             - name: Checkout repo
@@ -26,10 +29,10 @@ jobs:
               with:
                   ref: ${{github.ref}}
 
-            - name: Read info.txt file
+            - name: Read branch-info.json file
               id: read-file
               run: |
-                  CONTENT=$(cat info.txt | tr '\n' ';')
+                  CONTENT=$(cat branch-info.json | tr '\n' ';')
                   echo "info_file=$CONTENT" >> $GITHUB_OUTPUT
 
         outputs:
@@ -49,8 +52,8 @@ jobs:
               with:
                   ref: main
 
-            - name: Append info.txt file
-              run: echo '${{needs.get_branch_metadata.outputs.branch_metadata}}' | tr ';' '\n' >> info.txt
+            - name: Append branch-info.json file
+              run: echo '${{needs.get_branch_metadata.outputs.branch_metadata}}' | tr ';' '\n' >> branch-info.json
 
             # # Not needed in production (only for local testing)
             # - name: Install unzip for bun
