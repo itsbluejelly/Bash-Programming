@@ -4,7 +4,7 @@ import path from "node:path"
 import type { BranchInfoType } from "~/schemas/branch-info/type"
 
 /** An object that contains the section markers for the tutorials in the readme file */
-const TUTORIAL_MARKERS = {
+export const TUTORIAL_MARKERS = {
 	/** The marker that identifies the start of this section */
 	START: "<!-- Start of tutorial list -->" as const,
 	/** The marker that identifies the end of this section */
@@ -35,7 +35,7 @@ export const getFilePath = (fileName: string) =>
  * @param fileData The file's data to parse through, in an array format
  * @returns An object with the indices on the tutorial markers
  */
-function getTutorialMarkerIndices(fileData: string[]) {
+export function getTutorialMarkerIndices(fileData: string[]) {
 	const tutorialStart = fileData.indexOf(TUTORIAL_MARKERS.START)
 	const tutorialEnd = fileData.indexOf(TUTORIAL_MARKERS.END)
 
@@ -57,7 +57,7 @@ function getTutorialMarkerIndices(fileData: string[]) {
  * A function that reads the section with the tutorials from the markdown file, and returns them as a list
  * @returns The list of the current tutorials currently in the readME file
  */
-async function readTutorialList() {
+export async function readTutorialList() {
 	// Step 1: Get the markdown file and the marker indices
 	const markdownFilePath = getFilePath(FILE_NAMES.README)
 
@@ -77,8 +77,8 @@ async function readTutorialList() {
 		.slice(startIndex, tutorialEnd) // Get only the listed tutorial section with their markers
 		.join("\n") // Join via newlines
 		.split(`${TUTORIAL_MARKERS.MIDDLE}\n`) // Split via the line with the middle marker, to get the sections
-		.filter((arg) => arg.length > 0) // Remove empty strings
 		.map((arg) => arg.split(`\n${TUTORIAL_MARKERS.MIDDLE}`)[0]?.trim()!) // Remove the ending middle marker + newlines
+		.filter((arg) => arg.length > 0) // Remove empty strings
 
 	return tutorials
 }
@@ -89,7 +89,7 @@ async function readTutorialList() {
  * @param currentTutorials The list of the previous tutorials to append to
  * @param order The order to write the new tutorials after appending, can be `asc` or `desc` and defaults to `asc`
  */
-async function addTutorial(
+export async function addTutorial(
 	tutorial: string,
 	currentTutorials: string[],
 	order: "asc" | "desc" = "asc"
@@ -152,7 +152,10 @@ async function addTutorial(
  * @param tutorial The tutorial to edit
  * @param currentTutorials THe current tutorials present in the markdown
  */
-async function editTutorial(tutorial: string, currentTutorials: string[]) {
+export async function editTutorial(
+	tutorial: string,
+	currentTutorials: string[]
+) {
 	// Step 1: Find the tutorial in the current ones and add ending marker to all tutorials
 	const correctTutorial = `${tutorial}\n${TUTORIAL_MARKERS.MIDDLE}`.trim()
 
@@ -207,7 +210,7 @@ async function editTutorial(tutorial: string, currentTutorials: string[]) {
  * @param fileData The data present in the file, in JSON format
  * @returns An object with the valid data
  */
-async function getBranchInfo(fileData: string) {
+export async function getBranchInfo(fileData: string) {
 	// Step 1: Prepare the parser
 	const ajv = new Ajv()
 
@@ -223,7 +226,9 @@ async function getBranchInfo(fileData: string) {
 
 	// Step 2: Parse the file data
 	const parsedData = JSON.parse(fileData)
-	if (!parse(parsedData)) throw new Error(parse.errors?.join("\n,"))
+
+	if (!parse(parsedData))
+		throw new Error(parse.errors?.map((error) => error.message).join(",\n"))
 
 	// Step 3: Prepare defaults if data is okay
 	const givenDate = parsedData.lastUpdated ?? process.env.LAST_UPDATED_AT
@@ -232,7 +237,7 @@ async function getBranchInfo(fileData: string) {
 	const branchInfoData: BranchInfoType = {
 		author: process.env.ACTOR,
 		...parsedData,
-		lastUpdated: updateDate.toUTCString()
+		lastUpdated: updateDate.toUTCString(),
 	}
 
 	return branchInfoData
@@ -283,14 +288,10 @@ async function main() {
 			tutorial.includes(properBranchName ?? title)
 		)
 	) {
-		console.log({ entry, oldTutorials })
 		await editTutorial(entry, oldTutorials)
 	} else {
-		console.log({ entry, oldTutorials })
 		await addTutorial(entry, oldTutorials)
 	}
-
-	console.log(await readTutorialList())
 }
 
 if (require.main === module) {

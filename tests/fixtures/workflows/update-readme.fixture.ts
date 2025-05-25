@@ -42,37 +42,14 @@ const writeBranchInfoFile = async (
  * The test fixture for the update-readme unit test
  */
 const UpdateReadmeTest = test.extend<{
-	/**
-	 * A function that gets the mock markdown file's contents
-	 * @param encoding The optional encoding to use when reading the file, @default `utf-8`
-	 * @returns The mock markdown file's contents
-	 */
 	getMarkdownFile: typeof getMarkdownFile
-
-	/**
-	 * A function that gets the mock branch-info file's contents
-	 * @param encoding The optional encoding to use when reading the file, @default `utf-8`
-	 * @returns The mock markdown file's contents
-	 */
 	getBranchInfoFile: typeof getBranchInfoFile
-
-	/**
-	 * A function that writes data to the mock markdown file
-	 * @param data The data to write to the file
-	 * @param encoding The optional encoding to use when writing to the file, @default `utf-8`
-	 */
 	writeMarkdownFile: typeof writeMarkdownFile
-
-	/**
-	 * A function that writes data to the branch info file
-	 * @param data The data to write to the file
-	 * @param encoding The optional encoding to use when writing to the file, @default `utf-8`
-	 */
 	writeBranchInfoFile: typeof writeMarkdownFile
 
 	/** An object that defines extra settings for the test, with props like
 	 * 1. __mode__: Defines how all write functions in the test should handle the changes
-	 * 
+	 *
 	 * To handle the changes well, don't destructure this object while updating its value
 	 */
 	settings: {
@@ -87,16 +64,43 @@ const UpdateReadmeTest = test.extend<{
 		mode: "temp" | "save"
 	}
 }>({
-	settings: {mode: "temp"},
+	/** An object that defines extra settings for the test, with props like
+	 * 1. __mode__: Defines how all write functions in the test should handle the changes
+	 *
+	 * To handle the changes well, don't destructure this object while updating its value
+	 */
+	settings: { mode: "temp" },
+
+	/**
+	 * A function that gets the mock branch-info file's contents
+	 * @param encoding The optional encoding to use when reading the file, @default `utf-8`
+	 * @returns The mock markdown file's contents
+	 */
 	getBranchInfoFile: async ({}, use) => use(getBranchInfoFile),
+
+	/**
+	 * A function that gets the mock markdown file's contents
+	 * @param encoding The optional encoding to use when reading the file, @default `utf-8`
+	 * @returns The mock markdown file's contents
+	 */
 	getMarkdownFile: async ({}, use) => use(getMarkdownFile),
 
+	/**
+	 * A function that writes data to the branch info file
+	 * @param data The data to write to the file
+	 * @param encoding The optional encoding to use when writing to the file, @default `utf-8`
+	 */
 	writeBranchInfoFile: async ({ settings }, use) => {
 		const originalContent = await getBranchInfoFile()
 		await use(writeBranchInfoFile)
 		if (settings.mode === "temp") await writeBranchInfoFile(originalContent)
 	},
 
+	/**
+	 * A function that writes data to the mock markdown file
+	 * @param data The data to write to the file
+	 * @param encoding The optional encoding to use when writing to the file, @default `utf-8`
+	 */
 	writeMarkdownFile: async ({ settings }, use) => {
 		const originalContent = await getMarkdownFile()
 		await use(writeMarkdownFile)

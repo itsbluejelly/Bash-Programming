@@ -1,3 +1,4 @@
+/** The type of file structure as described in the schema to the branch-info file */
 export type BranchInfoType = {
 	/** The topic of the lesson */
 	topic: string
