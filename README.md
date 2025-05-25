@@ -48,6 +48,11 @@ The list below contains the topics covered in the tutorial series. Each topic is
 
 <!-- Please dont delete the comments surrounding and within list of lessons🙏 -->
 <!-- Start of tutorial list -->
+- [__Lesson 1: Intro to bash__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_1)
+The lesson is meant to be a welcoming intro to some basic bash commands and prebuilt scripts, include how to elevate their permissions and run them
+  - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
+  - Last updated: _Sun, 25 May 2025 15:12:31 GMT_
+<!-- Lesson here -->
 <!-- End of tutorial list -->
 
 ## Guidelines
