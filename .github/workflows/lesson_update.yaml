@@ -1,5 +1,5 @@
-name: Lesson Branch Creation
-run-name: "${{github.actor}} created lesson ${{github.ref_name}}"
+name: Lesson Branch Update
+run-name: "${{github.actor}} updated lesson ${{github.ref_name}}"
 
 on:
     push:
