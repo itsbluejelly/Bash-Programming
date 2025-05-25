@@ -6,7 +6,7 @@ on:
         branches:
             - "lesson_*"
         paths:
-            - "info.txt"
+            - "branch-info.json"
 
 permissions:
     contents: write
