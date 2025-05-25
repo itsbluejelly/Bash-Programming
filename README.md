@@ -1,5 +1,6 @@
 # Bash Programming Tutorial
 
+[![Test Lesson update workflow](https://github.com/itsbluejelly/Bash-Programming/actions/workflows/test_lesson_update.yaml/badge.svg)](https://github.com/itsbluejelly/Bash-Programming/actions/workflows/test_lesson_update.yaml)
 [![Lesson Branch Creation](https://github.com/itsbluejelly/Bash-Programming/actions/workflows/lesson_creation.yaml/badge.svg)](https://github.com/itsbluejelly/Bash-Programming/actions/workflows/lesson_creation.yaml)
 
 This repository is an archive of my journey learning Bash programming. It contains various scripts and examples that I have created while learning the language.
