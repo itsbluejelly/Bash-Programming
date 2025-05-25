@@ -18,6 +18,10 @@ export const newBranchInfoFilePath = path.join(
 /** The path to the mock markdown file, but when the tests run it becomes the path to the OG file */
 export const newMarkdownFilePath = path.join(__dirname, "..", "..", "real-README.md")
 
+/**
+ * A function that sets up vitest globally, and returns a function that handles the teardown
+ * @returns A function that globally tears down vitest
+ */
 export default async function setupUnitTests() {
 	// Step 1: Find the OG files, if any we rename them and copy their content, otherwise we just create the new ones as mocks
     console.log("...Creating mock files and hiding the real ones⏳")
