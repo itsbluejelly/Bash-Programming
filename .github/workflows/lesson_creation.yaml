@@ -40,6 +40,7 @@ jobs:
         needs: get_branch_metadata
 
         env:
+            LAST_UPDATED_AT: ${{github.event.head_commit.timestamp}}
             ACTOR: ${{github.actor}}
 
         steps:
@@ -70,7 +71,6 @@ jobs:
 
               env:
                   CONTRIBUTORS: ${{secrets.CONTRIBUTORS}}
-                  LAST_UPDATED_AT: ${{github.event.head_commit.timestamp}}
 
             - name: Update readme
               id: update-readme
