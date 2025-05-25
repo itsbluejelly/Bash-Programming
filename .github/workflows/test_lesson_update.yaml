@@ -33,7 +33,7 @@ jobs:
               run: bun install --frozen-lockfile
 
             - name: Run workflow tests
-              run: bun run test tests/unit/workflows/*.ts
+              run: bun run test tests/unit/workflows/*.ts --run
               continue-on-error: false
               env:
                 CONTRIBUTORS: ${{secrets.CONTRIBUTORS}}
