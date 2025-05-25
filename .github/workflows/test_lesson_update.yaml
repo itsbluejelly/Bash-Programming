@@ -3,7 +3,7 @@ run-name: ${{github.actor}} testing the lesson update workflow
 
 concurrency: 
     cancel-in-progress: true
-    group: ${{github.workflow}}-${{github.ref}}
+    group: test-workflow-${{github.workflow}}-${{github.ref}}
 
 on: 
     workflow_call: 
