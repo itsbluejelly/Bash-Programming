@@ -55,6 +55,11 @@ The lesson is meant to be a welcoming intro to some basic bash commands. It also
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
   - Last updated: _Tue, 03 Jun 2025 20:56:50 GMT_
 <!-- Lesson here -->
+- [__Lesson 2: Variables__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_2)
+The lesson covers the use of variables to store data and reuse it later on. It also goes through the process of reading user input.
+  - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
+  - Last updated: _Tue, 03 Jun 2025 21:39:43 GMT_
+<!-- Lesson here -->
 <!-- End of tutorial list -->
 
 ## Guidelines
