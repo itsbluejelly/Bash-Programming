@@ -19,7 +19,7 @@ To navigate the repo, please remember the following
 
 1. __Branches__: The branches aside from the `main` branch are used to store different parts of the tutorial. Each branch contains a specific stage in the process. For example, the `lesson_1` branch contains all scripts listed in the 1st lesson, etc. The branch names are in the format `lesson_<number>`, where `<number>` is the lesson number, in lower snake case.
 
-2. __File/Folder names__: The file or folder names are used to detail what topic was covered in the lesson, for example, `lesson_1` has a script named `start.sh` which details the pilot of the tutorial series.
+2. __File/Folder names__: The file or sub-folder names are used to detail what topic was covered in the lesson, for example, `lesson_1` has a script named `start.sh` which details the pilot of the tutorial series.You can choose to list all script files and folders in the root of the branch or create a folder named `scripts` at the root to store all the script files and folders. The latter is recommended for better organization.
 
 Each branch consists of
 
