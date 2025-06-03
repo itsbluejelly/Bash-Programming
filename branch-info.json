@@ -1,3 +1,4 @@
 {
-    "topic": "Demo branch"
+    "topic": "Variables",
+    "description": "The lesson covers the use of variables to store data and reuse it later on. It also goes through the process of reading user input."
 }
