@@ -29,7 +29,7 @@ Each branch consists of
 - __schemas__: The folder that contains the JSON schema for the `branch-info.json` file. It is not mandatory to have this folder in your branch, but it is recommended to have it for better development experience.
 - __branch-info.json__: A file that enables the bot running in the action to detect the metadata of the lesson identified by the branch name. It should be in the root of the branch and is intellisense-enabled on vscode. It consists of the following fields:
 
-```json
+```js
 {
   "topic": "<topic name>", // The mandatory topic of the lesson
   "description": "<description>", // The optional description of the lesson
@@ -37,6 +37,8 @@ Each branch consists of
   "author": "<author name>", // The optional author of the lesson's github username. By default its the name of the user who triggered the lesson workflow
 }
 ```
+
+- __README.md__: A file that contains the description of the lesson. It is not mandatory to have this file in your branch, but it is recommended to have it for better understanding of the lesson. It should be in the root of the branch, and is by no means associated with the `branch-info.json` file.
 
 > To ensure the branch has all the required files, please branch off the `demo_lesson` branch and name the new branch in the format specified above. The `demo_lesson` has all the required files and folders, with a dummy `branch-info.json` file, and is meant to be used as a template and not an example of a lesson.
 
