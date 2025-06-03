@@ -1,6 +1,21 @@
 # Lesson 3: Math Operations
 
-This lesson covers basic arithmetic operations in bash. The example uses 2 numbers from the user and performs addition, subtraction, multiplication, and division.
+This lesson covers basic arithmetic operations in bash. It includes 2 examples under the `scripts` directory
+
+- `float.bash`: Demonstrates how to handle floating-point arithmetic using `bc`
+- `integer.bash`: Demonstrates how to handle integer arithmetic using built-in bash arithmetic expansion
+
+## Table of Contents
+
+- [Lesson 3: Math Operations](#lesson-3-math-operations)
+  - [Topics Covered](#topics-covered)
+  - [How to Run](#how-to-run)
+
+## Topics Covered
+
+- Basic arithmetic operators in bash
+- Handling floating-point numbers with `bc`
+- Using built-in arithmetic expansion for integers
 
 ## How to Run
 
@@ -16,14 +31,21 @@ This lesson covers basic arithmetic operations in bash. The example uses 2 numbe
   git checkout lesson_3
   ```
 
-3.Make the script executable:
+3.Make the scripts executable:
 
   ```bash
-  chmod +x math_operations.sh
+  chmod +x ./scripts/*
   ```
-  
-4.Run the script:
+
+4.Run the scripts altogether:
 
   ```bash
-  ./start.sh
+  ./scripts/*
+  ```
+
+5.Or run each script individually:
+
+  ```bash
+  ls -la ./scripts
+  ./scripts/<file-name-of-script>
   ```
