@@ -51,9 +51,9 @@ The list below contains the topics covered in the tutorial series. Each topic is
 <!-- Please dont delete the comments surrounding and within list of lessons🙏 -->
 <!-- Start of tutorial list -->
 - [__Lesson 1: Intro to bash__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_1)
-The lesson is meant to be a welcoming intro to some basic bash commands and user input
+The lesson is meant to be a welcoming intro to some basic bash commands. It also brings about the use of subshells
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
-  - Last updated: _Tue, 03 Jun 2025 20:02:08 GMT_
+  - Last updated: _Tue, 03 Jun 2025 20:56:50 GMT_
 <!-- Lesson here -->
 <!-- End of tutorial list -->
 
