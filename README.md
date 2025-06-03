@@ -2,6 +2,17 @@
 
 The branch is meant to serve as a staring point for the series. It greets the user and prints their current directory.
 
+## Table of Contents
+
+- [Lesson 1: Intro to bash](#lesson-1-intro-to-bash)
+  - [Topics Covered](#topics-covered)
+  - [How to run](#how-to-run)
+
+## Topics Covered
+
+- Basic bash script structure, including shebang
+- __Command substitution__: How to execute subcommands and use their output
+
 ## How to run
 
 1. Clone the repository:
