@@ -1,6 +1,6 @@
 # Lesson 1: Intro to bash
 
-The branch is meant to serve as a staring point for the series. It reads the user's name and prints the files in their select directory.
+The branch is meant to serve as a staring point for the series. It greets the user and prints their current directory.
 
 ## How to run
 

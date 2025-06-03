@@ -1,5 +1,5 @@
 {
     "topic": "Intro to bash",
-    "description": "The lesson is meant to be a welcoming intro to some basic bash commands and user input",
+    "description": "The lesson is meant to be a welcoming intro to some basic bash commands. It also brings about the use of subshells",
     "author": "itsbluejelly"
 }
