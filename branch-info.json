@@ -1,5 +1,5 @@
 {
     "topic": "Intro to bash",
-    "description": "The lesson is meant to be a welcoming intro to some basic bash commands and prebuilt scripts, include how to elevate their permissions and run them",
+    "description": "The lesson is meant to be a welcoming intro to some basic bash commands and user input",
     "author": "itsbluejelly"
 }
