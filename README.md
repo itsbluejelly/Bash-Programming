@@ -60,6 +60,11 @@ The lesson covers the use of variables to store data and reuse it later on. It a
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
   - Last updated: _Tue, 03 Jun 2025 21:39:43 GMT_
 <!-- Lesson here -->
+- [__Lesson 3: Math Operations__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_3)
+The lesson covers the basics of math functions in bash
+  - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
+  - Last updated: _Tue, 03 Jun 2025 23:23:48 GMT_
+<!-- Lesson here -->
 <!-- End of tutorial list -->
 
 ## Guidelines
