@@ -14,7 +14,7 @@ if [[ -e "$filePath" ]]; then
         echo "Path $filePath is a symlink"
     fi
 
-    echo "It has the following permissions: $(ls -la "$filePath" | head -n 2 | tail -n 1 | cut -b 1-9 )"
+    echo "It has the following permissions: $(ls -la "$filePath" | head -n 2 | tail -n 1 | cut -b 1-10 )"
 else
     echo "Path '$filePath' does not exist"
 fi
