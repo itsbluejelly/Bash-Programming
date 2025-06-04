@@ -2,8 +2,8 @@
 
 The branch is meant to show how to use variables in bash to avoid repitition. It includes 2 topics under the `scripts` directory:
 
-- `start.sh`: This details the start of the lesson, with a brief intro to variables.
-- `input.sh`: This script demonstrates how to use variables to read and display user input.
+- [`start.sh`](scripts/start.bash): This details the start of the lesson, with a brief intro to variables.
+- [`input.sh`](scripts/input.bash): This script demonstrates how to use variables to read and display user input.
 
 ## Table of Contents
 
