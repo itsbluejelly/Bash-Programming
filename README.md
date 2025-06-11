@@ -39,6 +39,8 @@ Each branch consists of
 ```
 
 - __README.md__: A file that contains the description of the lesson. It is not mandatory to have this file in your branch, but it is recommended to have it for better understanding of the lesson. It should be in the root of the branch, and is by no means associated with the `branch-info.json` file.
+- __.gitignore__: A file that contains the list of files and folders to be ignored by git. It is not mandatory to have this file in your branch, but it is recommended to have it for better organization of the branch.
+- __.gitattributes__: A file that contains the list of attributes for the branch. It is not mandatory to have this file in your branch, but it is recommended to have it for better language detection on github.
 
 > To ensure the branch has all the required files, please branch off the `demo_lesson` branch and name the new branch in the format specified above. The `demo_lesson` has all the required files and folders, with a dummy `branch-info.json` file, and is meant to be used as a template and not an example of a lesson.
 
