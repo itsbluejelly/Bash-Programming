@@ -2,9 +2,9 @@
 
 This lesson covers the use of if-statements and conditional logic in bash. It includes 3 examples under the `scripts` directory to illustrate this.
 
-- [`basic.bash`](scripts/basic.bash): A file that demonstrates the use of nested if-statements with conditional logic in both numbers and strings. It takes in the value, its compared value and their type as user input.
-- [`file.bash`](scripts/file.bash): A file that demonstrates the use of if-statements to check for the existence of a file path and its type. It takes in the file path as user input and displays whether it exists and if its a file or directory.
-- [`advanced.bash`](scripts/advanced.bash): A file that demonstrates the use of if-statements for a more complex use case. It takes in the command the user wants to run and checks if the executable exists in the system. If so it runs the command, otherwise it tries to install it using `apt` and displays an error message if it fails, otherwise it runs the command.
+- [`basic.sh`](scripts/basic.sh): A file that demonstrates the use of nested if-statements with conditional logic in both numbers and strings. It takes in the value, its compared value and their type as user input.
+- [`file.sh`](scripts/file.sh): A file that demonstrates the use of if-statements to check for the existence of a file path and its type. It takes in the file path as user input and displays whether it exists and if its a file or directory.
+- [`advanced.sh`](scripts/advanced.sh): A file that demonstrates the use of if-statements for a more complex use case. It takes in the command the user wants to run and checks if the executable exists in the system. If so it runs the command, otherwise it tries to install it using `apt` and displays an error message if it fails, otherwise it runs the command.
 
 ## Table of Contents
 
