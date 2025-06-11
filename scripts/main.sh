@@ -6,22 +6,24 @@ read -p "What package would you like to install: " package
 packagePath=$(command -v "$package")
 
 # Step 2: Initialise the logs
-successLogs="../logs/success.log"
-failureLogs="../logs/failure.log"
-installLogs="../logs/install.log"
+successLogs="./logs/success.csv"
+failureLogs="./logs/failure.csv"
+installLogs="./logs/install.txt"
 
-if [[ ! -d "../logs" ]]; then
-    mkdir "../logs"
-else
-    if [[ ! -s "$successLogs" ]]; then
-        echo "Date and time\tPackage\tmessage" > "$successLogs"
-    elif [[ ! -s "$failureLogs" ]]; then
-        echo "Date and time\tPackage\tError code\tmessage" > "$failureLogs"
-    fi
+if [[ ! -d "./logs" ]]; then
+    mkdir "./logs"
+fi
+
+if [[ ! -s "$successLogs" ]]; then
+    echo -e "Date and time,Package,message" > "$successLogs"
+fi
+
+if [[ ! -s "$failureLogs" ]]; then
+    echo -e "Date and time,Package,Error code,message" > "$failureLogs"
 fi
 
 # Step 3: Install the package
-if ./download.bash -p "$package" -s "$successLogs" -f "$failureLogs" -i "$installLogs"; then
+if ./scripts/download.sh -p "$package" -s "$successLogs" -f "$failureLogs" -i "$installLogs"; then
     echo "Feel free to view the package logs at $installLogs and success logs at $successLogs."
 else
     echo "An error occurred while installing $package. Kindly check the logs at $failureLogs for more details."

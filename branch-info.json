@@ -1,3 +1,4 @@
 {
-    "topic": "Demo branch"
+    "topic": "Exit codes",
+    "description": "The lesson covers the use and importance of exit codes. It also goes through file redirection techniques and proper stdin, stdout and stderr handling, combined with the use of special variables in shell scripts"
 }
