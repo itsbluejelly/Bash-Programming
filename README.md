@@ -2,8 +2,8 @@
 
 This lesson covers basic arithmetic operations in bash. It includes 2 examples under the `scripts` directory
 
-- [`float.bash`](scripts/float.bash): Demonstrates how to handle floating-point arithmetic using `bc`
-- [`integer.bash`](scripts/integer.bash): Demonstrates how to handle integer arithmetic using built-in bash arithmetic expansion
+- [`float.sh`](scripts/float.sh): Demonstrates how to handle floating-point arithmetic using `bc`
+- [`integer.sh`](scripts/integer.sh): Demonstrates how to handle integer arithmetic using built-in bash arithmetic expansion
 
 ## Table of Contents
 
