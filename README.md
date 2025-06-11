@@ -66,9 +66,9 @@ The lesson covers the basics of math functions in bash
   - Last updated: _Tue, 03 Jun 2025 23:23:48 GMT_
 <!-- Lesson here -->
 - [__Lesson 4: If Statements__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_4)
-Kylie ananunua snacks
+The lesson covers the fundamentals of conditional logic and handling, using if-statements for branching operations
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
-  - Last updated: _Thu, 05 Jun 2025 15:02:52 GMT_
+  - Last updated: _Wed, 11 Jun 2025 07:38:19 GMT_
 <!-- Lesson here -->
 <!-- End of tutorial list -->
 
