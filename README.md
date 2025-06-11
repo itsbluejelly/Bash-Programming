@@ -35,7 +35,7 @@ This lesson covers the use of if-statements and conditional logic in bash. It in
 2.Switch to the lesson branch:
 
   ```bash
-  git checkout lesson_3
+  git checkout lesson_4
   ```
 
 3.Make the scripts executable:
