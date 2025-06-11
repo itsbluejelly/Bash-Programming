@@ -1,0 +1,3 @@
+*.sh linguist-language=Shell                                                                                                 [13:59:59]
+*.bash linguist-language=Shell
+scripts/* linguist-language=Shell
