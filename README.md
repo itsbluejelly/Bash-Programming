@@ -5,6 +5,12 @@ The lesson covers the use of exit codes in shell scripts, which are crucial for 
 1. [download.sh](scripts/download.sh): A script that uses positional parameters to download specified packages, while logging out the results during the installations in the `logs` directory. It also handles errors by creating proper exit codes and printing out error messages to the console.
 2. [main.sh](scripts/main.sh): A script that calls [download.sh](scripts/download.sh) with the required parameters, demonstrating how to handle exit codes and errors in a script. It also prints error or success messages based on the exit codes, while properly prompting the user where necessary.
 
+## Table of Contents
+
+- [Lesson 5: Exit codes](#lesson-5-exit-codes)
+  - [Topics Covered](#topics-covered)
+  - [How to Run](#how-to-run)
+
 ## Topics Covered
 
 - Exit codes in shell scripts
