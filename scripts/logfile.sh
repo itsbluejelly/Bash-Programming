@@ -1,20 +1,20 @@
 #!/bin/bash
 # This script is meant to log the sounds added as input to the logfile
 
-# Step 1: Check if the params are in the proper format
+# Step 1: Check if the params are in the proper format, ie -a "a,b,c" -s "a,b,c"
 echo "Starting log script..."
 parameters="$@"
 animalsParam=""
 soundsParam=""
 
-if [[ ! "$parameters" =~ "-a "\w* ]]; then
+if [[ ! "$parameters" =~ "-a "* ]]; then
     echo "Invalid params, missing the animal keys, which should be in the -a option comma delimited, eg '-a cow,cat'"
     exit 1
 else
     tempString=${parameters#*-a }
     validString=${tempString%% *}
 
-    if [[ ! "$validString" =~ (\w+,?)+ ]]; then
+    if [[ ! "$validString" =~ ^[a-zA-Z]+(,[a-zA-Z]+)*$ ]]; then
         echo "Invalid animal param, should be comma delimited, eg 'cat,cow'"
         exit 5
     else
@@ -23,7 +23,7 @@ else
     fi
 fi
 
-if [[ ! "$parameters" =~ "-s "\w* ]]; then
+if [[ ! "$parameters" =~ "-s "* ]]; then
     echo "Invalid params, missing the sound values, which should be in the -s option comma delimited, eg '-s moo,meow'"
     exit 1
 else
@@ -46,26 +46,24 @@ logFile="sounds.csv"
 
 if [[ ! -d "$logFolder" ]]; then
     mkdir -p "$logFolder"
-    echo "Created log folder✅"
+    echo "Created log folder $logFolder"
 fi
 
-if [[ ! -s "$logFolder/$logFile" ]]; then
-    echo "Animal,Sound" > "$logFolder/$logFile"
-    echo "Created log files✅"
-fi
+echo "Animal,Sound" > "$logFolder/$logFile"
+echo "Created log files at $logFolder/$logFile"
 
 # Step 3: Write to the logs
 echo "Writing results to log file..."
-declare -A animals
-animalCount=$(echo "$animalsParam" | tr ',' '\n' | wc -l)
+animals=($(echo "$animalsParam" | tr ',' '\n'))
+sounds=($(echo "$soundsParam" | tr ',' '\n'))
 
-for ((index=1; index <= animalCount; index++)); do
-    animal=$(echo "$animalsParam" | cut -d ',' -f "$index")
-    sound=$(echo "$soundsParam" | cut -d ',' -f "$index")
+for ((index=0; index <= "${#animals[@]}"; index++)); do
+    animal="${animals[$index]}"
+    sound="${sounds[$index]}"
 
     if [[ -n "$animal" && -n "$sound" ]]; then
        echo "$animal,$sound" >> "$logFolder/$logFile"
-       echo "Appended $animal with sound $sound at line $index..."
+       echo "Appended $animal with sound $sound at line $((index + 2))..."
     fi
 done
 
