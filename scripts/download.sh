@@ -50,12 +50,15 @@ if [[ -n "$packagePath" ]]; then
     exit 5
 else
     echo "Installing $package..."
-    failureMessage="$(sudo apt update && sudo apt install -y $package > $installLogs)"
+    sudo apt update && sudo apt install -y "$package" > "$installLogs" 2> "$failureLogs"
 
     if [[ "$?" -eq 0 ]]; then
         echo "$package installed successfully at $(command -v $package)"
         echo -e "$(date +"$dateFormat"),$package,Successful install" >> "$successLogs"
     else
+        # Get the 1st error message
+        failureMessage="$(cat $failureLogs | awk -F 'E:' '/^E:/ {print $2}' | head -n 1)"
+        rm $failureLogs
         echo -e "$(date +"$dateFormat"),$package,10,$failureMessage" >> "$failureLogs"
         exit 10
     fi
