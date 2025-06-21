@@ -87,6 +87,11 @@ The lesson is meant to provide the understanding of for loops, as well as arrays
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
   - Last updated: _Fri, 13 Jun 2025 02:05:40 GMT_
 <!-- Lesson here -->
+- [__Lesson 8: Functions and case statements__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_8)
+This is a combined lesson that explores the importance of using case statements and their benefits. It also dives into the concept of functions in bash and their usage and return values. It also delves into parameter handling (Making this the biggest lesson yet💀)
+  - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
+  - Last updated: _Sat, 21 Jun 2025 23:46:12 GMT_
+<!-- Lesson here -->
 <!-- End of tutorial list -->
 
 ## Guidelines
