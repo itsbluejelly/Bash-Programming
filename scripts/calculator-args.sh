@@ -6,6 +6,15 @@ numbers=()
 total="0"
 scale="3"
 
+# Step 2: Set the scale first, as its a config param
+params="$@"
+tempString="${params#*--scale }"
+scaleParam="${tempString%% *}"
+
+if [[ -n "$scaleParam" && "$scaleParam" =~ ^[0-9]$ ]]; then
+    scale="$scaleParam"
+fi
+
 # A function to add the numbers
 addition(){
     for number in "${numbers[@]}"; do
@@ -65,17 +74,12 @@ setNumbers(){
 # 4. '-m' for multiplication
 # 5. '--scale' for scale
 while (( $# > 0 )); do
-    if [[ "$1" == "--scale" ]]; then
-        if [[ "$2" =~ ^[0-9]$ ]]; then
-            scale="$2"
-        else
-            echo "Error: Scale must be a number between 0-9 inclusive"
-            exit 1
-        fi
-    else
-        # Initiate vars and number array
-        flag="$1"
-        values="$2"
+    # Initiate vars and number array
+    flag="$1"
+    values="$2"
+
+    # Proceed only when not observing the scale tag, to handle calculations
+    if [[ ! "$flag" == "--scale" ]]; then
         setNumbers "$values"
 
         case "$flag" in
@@ -84,12 +88,12 @@ while (( $# > 0 )); do
             -d) division;;
             -m) multiplication;;
             *) 
-                echo -e "\n\tInvalid param, must either be '-a' '-s' '--scale' '-d' or '-m'"
+                echo -e "\n\tInvalid param, must either be '-a' '-s' '-d' or '-m'"
                 exit 1
         esac
     fi
 
-    # Reset the array and shift params
+    # Reset the array and shift params in any given param
     numbers=()
     shift 2
 done
