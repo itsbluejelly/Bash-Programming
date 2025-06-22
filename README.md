@@ -47,6 +47,7 @@ Each branch consists of
 ## Tutorial Series
 
 The list below contains the topics covered in the tutorial series. Each topic is linked to its respective branch.
+> So far all the lessons are covered, until contributions are met😅
 <!-- Please dont delete the comments surrounding and within list of lessons🙏 -->
 <!-- Start of tutorial list -->
 - [__Lesson 1: Intro to bash__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_1)
@@ -83,6 +84,11 @@ The lesson goes into depth on how while loops work in bash, and how to integrate
 The lesson is meant to provide the understanding of for loops, as well as arrays and dictionaries. It also helps show how these topics co-exist together with editing commands to make complex scripts
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
   - Last updated: _Fri, 13 Jun 2025 02:05:40 GMT_
+<!-- Lesson here -->
+- [__Lesson 8: Functions and case statements__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_8)
+This is a combined lesson that explores the importance of using case statements and their benefits. It also dives into the concept of functions in bash and their usage and return values. It also delves into parameter handling (Making this the biggest lesson yet💀)
+  - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
+  - Last updated: _Sat, 21 Jun 2025 23:48:10 GMT_
 <!-- Lesson here -->
 <!-- End of tutorial list -->
 
