@@ -47,9 +47,6 @@ Each branch consists of
 ## Tutorial Series
 
 The list below contains the topics covered in the tutorial series. Each topic is linked to its respective branch.
-
-> They are automatically updated as the series progresses 😂
-
 <!-- Please dont delete the comments surrounding and within list of lessons🙏 -->
 <!-- Start of tutorial list -->
 - [__Lesson 1: Intro to bash__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_1)
