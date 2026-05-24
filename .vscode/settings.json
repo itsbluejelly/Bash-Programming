@@ -1,8 +1,8 @@
 {
-    json.schemas: [
+    "json.schemas": [
         {
-            fileMatch: [/branch-info.json],
-            url: /schemas/branch-info/.schema.json
+            "fileMatch": ["/branch-info.json"],
+            "url": "/schemas/branch-info/.schema.json"
         }
     ]
 }
