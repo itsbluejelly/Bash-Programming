@@ -58,19 +58,20 @@ This lesson covers the use of case statements in bash. It also combines this wit
      ./scripts/calculator.sh <operation> <number(s)>
      ```
 
-    > It is important to note that all parameters, except for the operation `--scale` will be executed in the order passed in.
-    >
-    > Also, the script handles both integers and floats for all operations except for `--scale`, and the numbers provided must be separated by commas if more than one. For example, to add two numbers, you would run:
-    >
-    >```bash
-    >./scripts/calculator.sh -a 1,2
-    >```
-    >
-    > Finally, the supported operations are:
-    > - `-a`: Adds the numbers provided
-    > - `-s`: Subtracts the numbers provided
-    > - `-m`: Multiplies the numbers provided
-    > - `-d`: Divides the numbers provided
-    > - `--scale`: Determines the result of a division's decimal places
+   > It is important to note that all parameters, except for the operation `--scale` will be executed in the order passed in.
+   >
+   > Also, the script handles both integers and floats for all operations except for `--scale`, and the numbers provided must be separated by commas if more than one. For example, to add two numbers, you would run:
+   >
+   > ```bash
+   > ./scripts/calculator.sh -a 1,2
+   > ```
+   >
+   > Finally, the supported operations are:
+   >
+   > - `-a`: Adds the numbers provided
+   > - `-s`: Subtracts the numbers provided
+   > - `-m`: Multiplies the numbers provided
+   > - `-d`: Divides the numbers provided
+   > - `--scale`: Determines the result of a division's decimal places
 
 5. Feel free to explore and run the other scripts in the `scripts` directory, but the main script handles all this for you
