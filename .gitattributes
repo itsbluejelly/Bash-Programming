@@ -1,3 +1,10 @@
+<<<<<<< HEAD
 *.sh linguist-language=Shell
 *.bash linguist-language=Shell
 scripts/* linguist-language=Shell
+||||||| 3419d08
+=======
+*.sh linguist-language=Shell
+*.bash linguist-language=Shell
+./scripts/* linguist-language=Shell
+>>>>>>> main
