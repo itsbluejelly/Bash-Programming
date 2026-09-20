@@ -68,7 +68,7 @@ The lesson covers the basics of math functions in bash
 - [__Lesson 4: If Statements__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_4)
 The lesson covers the fundamentals of conditional logic and handling, using if-statements for branching operations
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
-  - Last updated: _Wed, 11 Jun 2025 07:38:19 GMT_
+  - Last updated: _Sun, 20 Sep 2026 17:04:18 GMT_
 <!-- Lesson here -->
 - [__Lesson 5: Exit codes__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_5)
 The lesson covers the use and importance of exit codes. It also goes through file redirection techniques and proper stdin, stdout and stderr handling, combined with the use of special variables in shell scripts
