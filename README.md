@@ -21,31 +21,31 @@ This lesson covers basic arithmetic operations in bash. It includes 2 examples u
 
 1.Clone the repository:
 
-  ```bash
-  git clone https://github.com/itsbluejelly/Bash-Programming <your-directory>
-  ```
+```bash
+git clone https://github.com/itsbluejelly/Bash-Programming <your-directory>
+```
 
 2.Switch to the lesson branch:
 
-  ```bash
-  git checkout lesson_3
-  ```
+```bash
+git checkout lesson_3
+```
 
 3.Make the scripts executable:
 
-  ```bash
-  chmod +x ./scripts/*
-  ```
+```bash
+chmod +x ./scripts/*
+```
 
 4.Run the scripts altogether:
 
-  ```bash
-  ./scripts/*
-  ```
+```bash
+./scripts/*
+```
 
 5.Or run each script individually:
 
-  ```bash
-  ls -la ./scripts
-  ./scripts/<file-name-of-script>
-  ```
+```bash
+ls -la ./scripts
+./scripts/<file-name-of-script>
+```
