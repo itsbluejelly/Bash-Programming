@@ -78,7 +78,7 @@ The lesson covers the use and importance of exit codes. It also goes through fil
 - [__Lesson 6: While loops__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_6)
 The lesson goes into depth on how while loops work in bash, and how to integrate them with branching conditions, for better input validation and user experience
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
-  - Last updated: _Wed, 11 Jun 2025 15:36:15 GMT_
+  - Last updated: _Sun, 20 Sep 2026 17:10:24 GMT_
 <!-- Lesson here -->
 - [__Lesson 7: For loops__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_7)
 The lesson is meant to provide the understanding of for loops, as well as arrays and dictionaries. It also helps show how these topics co-exist together with editing commands to make complex scripts
