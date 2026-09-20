@@ -73,7 +73,7 @@ The lesson covers the fundamentals of conditional logic and handling, using if-s
 - [__Lesson 5: Exit codes__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_5)
 The lesson covers the use and importance of exit codes. It also goes through file redirection techniques and proper stdin, stdout and stderr handling, combined with the use of special variables in shell scripts
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
-  - Last updated: _Wed, 11 Jun 2025 12:28:28 GMT_
+  - Last updated: _Sun, 20 Sep 2026 17:07:25 GMT_
 <!-- Lesson here -->
 - [__Lesson 6: While loops__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_6)
 The lesson goes into depth on how while loops work in bash, and how to integrate them with branching conditions, for better input validation and user experience
