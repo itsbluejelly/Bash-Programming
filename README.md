@@ -11,7 +11,7 @@ The branch is meant to serve as a staring point for the series. It greets the us
 ## Topics Covered
 
 - Basic bash script structure, including shebang
-- __Command substitution__: How to execute subcommands and use their output
+- **Command substitution**: How to execute subcommands and use their output
 
 ## How to run
 
@@ -37,4 +37,4 @@ The branch is meant to serve as a staring point for the series. It greets the us
 
    ```bash
     ./start.sh
-    ```
+   ```
