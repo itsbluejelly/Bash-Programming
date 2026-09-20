@@ -1,30 +1,8 @@
-# Lesson 7: For Loops
+# Lesson 6: While Loops
 
-The lesson covers the use of for loops in bash, and how to utilise them with data structures like arrays and strings. There are 2 examples provided in the `scripts` dictionary to illustrate this, with the main focus of the program being to record animal noises from user input.
+The lesson extensively covers the use of while loops in bash. The example script provided demonstrates how to use while loops to repeatedly ask for proper prompt from the user, if not provided as parameters. The script then uses the user input to count till the user's limit is reached in any order.
 
-- [logfile.sh](./scripts/logfile.sh): This script demonstrates how to make use of conditional statements to ensure the parameters are in the right format via POSIX compliant regex. It then uses the list of animals and sounds to create a log file and append the records, rewriting the file if the command is re-ran. This is made possible by using lists, string substitution and for loops to iterate through the data. It also ensures data integrity by only recording pairs
-- [input.sh](./scripts/input.sh): This script acts as a wrapper for the [logfile.sh](./scripts/logfile.sh) script, allowing the user to input their own animal and sound either via command line arguments or interactive input. It also ensures that the number of required records is dynamic if either sound or animal parameters aren't provided, and it will prompt the user for input until the required number of records is met.
-
-## Table Of Contents
-
-- [Lessons learnt](#lessons-learnt)
-- [How to run the scripts](#how-to-run-the-scripts)
-
-## Lessons learnt
-
-- Usage of for loops in bash. Including use of these iteration structures:
-  - Ranges
-  - Arrays
-  - Associative arrays
-- How to use regex to validate input appropriately
-- Use of arrays, including how to declare and operate on them
-- Use of dictionaries or associative arrays, and understanding their limitations
-- Special parameter variables, such as:
-  - __`$@`__: To pass all parameters as space-separated strings
-  - __`$#`__: To get the number of parameters passed
-  - __`$*`__: To pass all parameters as a single string, etc
-
-## How to run the scripts
+## How to use
 
 1. Clone the repository:
 
@@ -35,43 +13,31 @@ The lesson covers the use of for loops in bash, and how to utilise them with dat
 2. Checkout to the lesson branch:
 
    ```bash
-   git checkout lesson-7
+   git checkout lesson-6
    ```
 
-3. Make the scripts executable:
+3. Make the script executable:
 
    ```bash
-    chmod +x scripts/*.sh
-    ```
+   chmod +x loops.sh
+   ```
 
-4. Run the `input.sh` script, either in the following ways:
+4. Run the script:
 
-    - Without parameters, to enable full interactive mode:
+   With both parameters:
 
-        ```bash
-        ./scripts/input.sh
-        ```
+   ```bash
+   ./loops.sh -l <limit> -n <number>
+   ```
 
-    - With optional parameters, to enable prompting where necessary and error handling:
+   Or, run with any of the required parameters. Those missing will be prompted for:
 
-        ```bash
-        ./scripts/input.sh -a <animals,comma-separated> -s <sounds, comma-separated> -c <number-of-records>
-        ```
+   ```bash
+   ./loops.sh -l <limit>
+   ```
 
-    - With all parameters, to skip prompting:
+   Or, just run the script to be prompted for both:
 
-        ```bash
-        ./scripts/input.sh -a <animals,comma-separated> -s <sounds, comma-separated> -c <number-of-records>
-        ```
-
-5. View the log file created in the `logs` directory:
-
-    ```bash
-    cat logs/sounds.csv
-    ```
-
-6. Feel free to run the `logfile.sh` script. Though it is required to pass all parameters
-
-    ```bash
-    ./scripts/logfile.sh -a <animals,comma-separated> -s <sounds, comma-separated>
-    ```
+   ```bash
+   ./loops.sh
+   ```
