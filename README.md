@@ -63,7 +63,7 @@ The lesson covers the use of variables to store data and reuse it later on. It a
 - [__Lesson 3: Math Operations__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_3)
 The lesson covers the basics of math functions in bash
   - Covered by: [itsbluejelly](https://github.com/itsbluejelly)
-  - Last updated: _Tue, 03 Jun 2025 23:23:48 GMT_
+  - Last updated: _Sun, 20 Sep 2026 16:59:19 GMT_
 <!-- Lesson here -->
 - [__Lesson 4: If Statements__](https://github.com/itsbluejelly/Bash-Programming/tree/lesson_4)
 The lesson covers the fundamentals of conditional logic and handling, using if-statements for branching operations
