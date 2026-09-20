@@ -1,0 +1,3 @@
+*.sh linguist-language=Shell
+*.bash linguist-language=Shell
+./scripts/* linguist-language=Shell
