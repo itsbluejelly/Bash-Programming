@@ -13,8 +13,8 @@ The branch is meant to show how to use variables in bash to avoid repitition. It
 
 ## Topics Covered
 
-- __Variables__: How to create and use variables in bash scripts.
-- __User Input__: How to read input from the user.
+- **Variables**: How to create and use variables in bash scripts.
+- **User Input**: How to read input from the user.
 
 ## How to Run
 
@@ -26,9 +26,9 @@ The branch is meant to show how to use variables in bash to avoid repitition. It
 
 2. Navigate to the lesson branch:
 
-    ```bash
-    git checkout lesson_2
-    ```
+   ```bash
+   git checkout lesson_2
+   ```
 
 3. Make the scripts executable:
 
@@ -38,9 +38,9 @@ The branch is meant to show how to use variables in bash to avoid repitition. It
 
 4. Run all scripts in the `scripts` directory:
 
-    ```bash
-    ./scripts/*
-    ```
+   ```bash
+   ./scripts/*
+   ```
 
 5. Alternatively, run each script individually:
 
